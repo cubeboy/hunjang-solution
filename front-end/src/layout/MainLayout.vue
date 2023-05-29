@@ -1,12 +1,18 @@
 <script setup>
 import { ref } from 'vue'
 import { useChaptersStore } from '../stores/chapters'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const drawer = ref(null)
 
-const list = useChaptersStore().list
-console.log('useChapterStore = ', list)
+const chapterStore = useChaptersStore()
 
+const selectChapter = (chapter) => {
+  drawer.value = null
+  chapterStore.setCurrentChapter(chapter)
+}
 </script>
 
 <template>
@@ -30,14 +36,15 @@ console.log('useChapterStore = ', list)
       <v-list>
         <v-list-subheader class="text-h6">The Old Man And The Sea</v-list-subheader>
         <v-list-item
-          v-for="(item, index) in list"
+          v-for="(chapter, index) in chapterStore.chapterList"
           :key="index"
           link
+          @click="selectChapter(chapter)"
         >
           <template v-slot:prepend>
             <v-icon>mdi-book-settings-outline</v-icon>
           </template>
-          <v-list-item-title>{{ item }}</v-list-item-title>
+          <v-list-item-title>{{ chapter.title }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

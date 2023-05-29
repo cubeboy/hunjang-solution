@@ -1,8 +1,24 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
+import { useChaptersStore } from '../stores/chapters'
+import feedTextService from '../services/FeedTextService'
+
+const chapterStore = useChaptersStore()
 
 const actionMode = ref(0)
 const mode = reactive(['sentence', 'word'])
+
+const engText = ref('')
+
+watch(
+  () => chapterStore.currentChapter,
+  (chapter) => {
+    feedTextService.getEngText(chapter).then( data => {
+      engText.value = data
+    })
+  }
+)
+
 </script>
 
 <script>
@@ -24,7 +40,7 @@ export default {
     <v-row>
       <v-col cols="12" lg="6">
         <v-sheet>
-          <v-textarea label="English" rows="10" auto-grow />
+          <v-textarea label="English" rows="10" auto-grow v-model="engText" />
         </v-sheet>
       </v-col>
       <v-col cols="12" lg="6">

@@ -1,8 +1,16 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useChaptersStore = defineStore('chpters', () => {
-  const list = ref(['chapter 1', 'chapter 2', 'chapter 2'])
+export const useChaptersStore = defineStore('chapters', () => {
+  const chapterList = ref([
+    {bookId: 'OldManAndSea', title: 'chapter 1', chapter: 'chapter01'}, 
+    {bookId: 'OldManAndSea', title: 'chapter 2', chapter: 'chapter02'}, 
+    {bookId: 'OldManAndSea', title: 'chapter 3', chapter: 'chapter03'}, 
+  ])
 
-  return { list }
+  const currentChapter = ref(null)
+
+  const setCurrentChapter = (chapter) => {  currentChapter.value = chapter  }
+  
+  return { chapterList, currentChapter, setCurrentChapter}
 })
