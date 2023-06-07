@@ -3,7 +3,6 @@ import book from '../assets/books/OldManAndSea.json'
 
 export default {
   getEngText(bookInfo) {
-    console.log(bookInfo)
     return new Promise((resolve, reject) => {
       try {
         book.forEach(chapter => {
