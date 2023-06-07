@@ -9,9 +9,12 @@ import com.aallam.openai.api.model.ModelId
 import com.aallam.openai.client.LoggingConfig
 import com.aallam.openai.client.OpenAI
 import com.clouflake.hunjang.domain.application.GptService
+import com.clouflake.hunjang.domain.application.commands.RequestCommand
 import io.github.cdimascio.dotenv.dotenv
 import kotlinx.coroutines.runBlocking
+import org.springframework.stereotype.Service
 
+@Service
 class GptServiceImpl: GptService {
   @OptIn(BetaOpenAI::class)
   override fun requestToGpt(command: RequestCommand): String {

@@ -1,11 +1,10 @@
 package com.clouflake.hunjang.domain.application
 
 import com.clouflake.hunjang.domain.application.impl.GptServiceImpl
-import com.clouflake.hunjang.domain.application.impl.RequestCommand
+import com.clouflake.hunjang.domain.application.commands.RequestCommand
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 
 class TextTranslateServiceImplTests {
   val service = GptServiceImpl()
