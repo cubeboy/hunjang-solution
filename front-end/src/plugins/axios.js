@@ -1,17 +1,15 @@
 import axios from 'axios'
 // import { useChaptersStore } from '../stores/chapters'
 
-
-
 axios.defaults.baseURL = '/api'
 axios.defaults.headers.common.Accept = 'application/json'
 axios.interceptors.response.use(
-  response => {
+  (response) => {
     //const chapterStore = useChaptersStore()
     //chapterStore.setIsRunning(false)
     return response
   },
-  (error) =>{
+  (error) => {
     //const chapterStore = useChaptersStore()
     //chapterStore.setIsRunning(false)
     return Promise.reject(error)

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export default {
-  parse (error) {
+  parse(error) {
     if (error.response) {
       const status = error.response.status
       const data = error.response.data
