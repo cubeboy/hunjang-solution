@@ -5,12 +5,12 @@ export default {
   getEngText(bookInfo) {
     return new Promise((resolve, reject) => {
       try {
-        book.forEach(chapter => {
+        book.forEach((chapter) => {
           if (bookInfo.chapter == chapter.chapter) {
             resolve(chapter.engText)
           }
         })
-      }catch(error){
+      } catch (error) {
         reject(error)
       }
     })

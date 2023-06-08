@@ -8,7 +8,7 @@ import { useChaptersStore } from '../../stores/chapters.js'
 import HomeView from '../HomeView.vue'
 
 /**
- * prevention for windows resize evetn undefined error 
+ * prevention for windows resize evetn undefined error
  */
 window.ResizeObserver =
   window.ResizeObserver ||

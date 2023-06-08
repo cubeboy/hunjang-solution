@@ -17,5 +17,12 @@ export default defineConfig({
     deps: {
       inline: ['vuetify']
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080'
+      }
+    }
   }
 })
