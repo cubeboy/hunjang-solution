@@ -53,4 +53,17 @@ class TextTranslateControllerTests {
       .andExpect(status().`is`(200))
       .andExpect(jsonPath("\$.response").isNotEmpty)
   }
+
+  @Test
+  fun wordTranslate_shouldSuccess() {
+    val payload = TransTextPayload("you")
+    val mapper = ObjectMapper()
+    val reqBody = mapper.writeValueAsString(payload)
+    mvc.perform(
+      post("/api/transWord")
+        .contentType(MediaType.APPLICATION_JSON)
+        .content(reqBody))
+      .andExpect(status().`is`(200))
+      .andExpect(jsonPath("\$.response").isNotEmpty)
+  }
 }

@@ -12,8 +12,6 @@ const chapterStore = useChaptersStore()
 
 const actionMode = ref(0)
 
-const mode = reactive(['sentence', 'word'])
-
 const engTexts = ref([])
 
 const korText = ref('')
@@ -27,15 +25,23 @@ watch(
     })
   }
 )
-watch(
-  () => chapterStore.isRunning,
-  (isRunning) => {
-    console.log('isrunning => ', isRunning)
-    dialog.value = isRunning
-  }
-)
 
-const trans = (text) => {
+const transWord = (word) => {
+  dialog.value = true
+  errorMessage.value = ''
+  textTranslationService
+    .wordTranslate(word)
+    .then((response) => {
+      dialog.value = false
+      korText.value = response
+    })
+    .catch((error) => {
+      dialog.value = false
+      errorMessage.value = `번역작업에 오류가 발생 했습니다. : ` + error.errorMessage
+    })
+}
+
+const transText = (text) => {
   dialog.value = true
   errorMessage.value = ''
   textTranslationService
@@ -48,6 +54,10 @@ const trans = (text) => {
       dialog.value = false
       errorMessage.value = `번역작업에 오류가 발생 했습니다. : ` + error.errorMessage
     })
+}
+
+const splitText = (text) => {
+  return text.split(' ')
 }
 </script>
 
@@ -86,13 +96,25 @@ export default {
             <v-card-title>English</v-card-title>
             <v-list>
               <v-list-item
+                v-if="actionMode == 0"
                 class="pointer"
                 v-for="(item, index) in engTexts"
                 :key="index"
-                @click="trans(item)"
+                @click="transText(item)"
               >
                 {{ item }}
               </v-list-item>
+              <v-listitem v-if="actionMode == 1" v-for="(item, index) in engTexts" :key="index">
+                <section>
+                  <span
+                    class="pointer"
+                    v-for="(word, idx) in splitText(item)"
+                    :key="idx"
+                    @click="transWord(word)"
+                    >{{ word + ' ' }}</span
+                  >
+                </section>
+              </v-listitem>
             </v-list>
           </v-card>
         </v-sheet>

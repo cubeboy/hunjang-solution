@@ -14,5 +14,20 @@ export default {
           reject(errorParser.parse(error))
         })
     })
+  },
+  wordTranslate(word) {
+    return new Promise((resolve, reject) => {
+      const param = { promptText: word }
+      axios
+        .post('/transWord', param)
+        .then(({ data }) => {
+          console.log('transWord response => ', data.response)
+          resolve(data.response)
+        })
+        .catch((error) => {
+          console.log('word translate error => ', error)
+          reject(errorParser.parse(error))
+        })
+    })
   }
 }
