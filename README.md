@@ -15,6 +15,11 @@ Chat GPT 를 이용한 영어학습 프로그램
   - 복습: 사용자가 학습한 지문이나 단어를 정기적으로 복습할 수 있도록 알림을 보낸다. 복습 시에는 지문이나 단어를 랜덤하게 섞어서 제시하고, 사용자가 해석하거나 설명하도록 한다.
   - 설정: 사용자가 앱의 화면 밝기, 폰트 크기, 알림 주기 등을 설정할 수 있다.
 
+실행전 참고사항 : 실행 하기 전에 backend 프로젝트 폴더 루트에 .env 파일을 만들고 (./hunjang/.env)
+```
+api-key=<apikey>
+```
+항목을 추가 해야 합니다.
 
 1. [요구사항 정의](./documents/requirements.md)
 1. [Initialize Front End](./documents/scafold.md)
